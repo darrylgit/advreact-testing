@@ -17,3 +17,13 @@ it("has a text area and a button", () => {
   expect(wrapped.find("textarea").length).toEqual(1);
   expect(wrapped.find("button").length).toEqual(1);
 });
+
+it("has a text area that users can type into", () => {
+  const newComment = "new comment";
+  wrapped.find("textarea").simulate("change", {
+    target: { value: newComment }
+  });
+  wrapped.update();
+
+  expect(wrapped.find("textarea").prop("value")).toEqual(newComment);
+});
